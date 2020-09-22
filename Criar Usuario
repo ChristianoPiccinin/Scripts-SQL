@@ -1,0 +1,8 @@
+-- tem que estar na base [master]
+CREATE LOGIN [{nome login}] WITH PASSWORD = '{senha}';
+GO
+
+
+-- tem que estar na base [{nome banco}]
+CREATE USER [{nome login}] FOR LOGIN [{nome login}]  WITH DEFAULT_SCHEMA = dbo
+GO
