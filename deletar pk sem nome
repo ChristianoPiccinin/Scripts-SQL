@@ -1,0 +1,12 @@
+declare @PrimaryKeyName sysname = 
+    (select CONSTRAINT_NAME 
+     from INFORMATION_SCHEMA.TABLE_CONSTRAINTS 
+     where CONSTRAINT_TYPE = 'PRIMARY KEY' and TABLE_SCHEMA='dbo' and TABLE_NAME = 'PKTest'
+    )
+
+IF @PrimaryKeyName is not null
+begin
+    declare @SQL_PK NVARCHAR(MAX) = 'alter table dbo.PKTest drop constraint ' + @PrimaryKeyName
+    print (@SQL_PK)
+    EXEC sp_executesql @SQL_PK;
+end
